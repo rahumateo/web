@@ -1,0 +1,188 @@
+
+.english {
+    font-size: 0.9em;
+    font-style: italic;
+}
+fieldset {
+    border-style: none;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+textarea {
+    background-color: #FFFFFF;
+    color: #777777;
+    font-family: Merriweather Sans,Arial,Helvetica,sans-serif,Verdana;
+    font-size: 9pt;
+    margin: 3px 0 0;
+    width: 325px;
+}
+.input_form {
+    background-color: #FAFAFA;
+    border: 1px solid #DDDDDD;
+    border-radius: 2px 2px 2px 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    color: #555555;
+    font-weight: normal;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+}
+.input_form:focus {
+    background-color: #FFFFFF;
+    transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s; /* Firefox 4 */
+    -webkit-transition: all 0.3s ease-in-out 0s; /* Safari and Chrome */
+    -o-transition: all 0.3s ease-in-out 0s; /* Opera */
+    -ms-transition: all 0.3s ease-in-out;
+}
+.message {
+    margin: 10px;
+    border: 1px solid;
+    border-radius: 7px 7px 7px 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+
+    transition: all 0.1s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s; /* Firefox 4 */
+    -webkit-transition: all 0.3s ease-in-out 0s; /* Safari and Chrome */
+    -o-transition: all 0.3s ease-in-out 0s; /* Opera */
+    -ms-transition: all 0.3s ease-in-out;
+}
+.message-green {
+    background-color: #DDFFDD;
+    border-color: #99CC99;
+}
+.message-red {
+    background-color: #FFDDDD;
+    border-color: #CC9999;
+}
+.message-yellow {
+    background-color: #FFFFDD;
+    border-color: #FFCC44;
+}
+.message-neutral {
+    background-color: none;
+    border: none;
+}
+.label {
+    display: block;
+    float: left;
+    margin: 0 10px 0 10px;
+    text-align: left;
+    width: 170px;
+}
+.input {
+    display: block;
+}
+.input_birthday {
+    display: block;
+    margin-left: 210px;
+    padding-bottom: 50px;
+}
+#place {
+    display: block;
+    margin: 0;
+}
+.p_form {
+    display: block;
+    float: left;
+    margin: 6px 3px 6px 1px;
+}
+.p_message {
+    margin: 7px auto;
+    text-align: center;
+}
+.p_message_eng {
+    font-style: italic;
+}
+#p_birthday_comma {
+    display: block;
+    float: right;
+    margin-left: 130px;
+}
+#name_form {
+    width: 325px;
+}
+
+.address_form {
+    height: 100px;
+    max-height: 250px;
+    max-width: 500px;
+    min-height: 90px;
+    min-width: 320px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.sex_form {
+    margin-top: 0;
+    vertical-align: middle;
+}
+.birthday_form {
+    float: left;
+    margin-left: 3px;
+    margin-right: 10px;
+}
+#birth_place_form {
+    width: 190px;
+}
+.row:hover .note, .row:focus .note, .row:active .note {
+    visibility: visible;
+}
+.note {
+    color: #777;
+    font-size: 8pt;
+    line-height: 8pt;
+    margin-left: 210px;
+    text-align: left;
+    visibility: hidden;
+    width: auto;
+}
+.required {
+    color: #FF0000;
+}
+.eng {
+    line-height: 5px;
+}
+
+form input[type="submit"] {
+    background: rgb(254,231,154);
+    background: -moz-linear-gradient(top,  rgba(254,231,154,1) 0%, rgba(254,193,81,1) 100%);
+    background: -webkit-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+    background: -o-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+    background: -ms-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+    background: linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fee79a', endColorstr='#fec151',GradientType=0 );
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    border-radius: 30px;
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
+    -ms-box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
+    -o-box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
+    border: 1px solid #D69E31;
+    color: #85592e;
+    cursor: pointer;
+    float: left;
+    font: bold 15px Helvetica, Arial, sans-serif;
+    height: 35px;
+    margin: 20px 0 35px 15px;
+    position: relative;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    width: 120px;
+}
+
+form input[type="submit"]:hover {
+    background: rgb(254,193,81);
+    background: -moz-linear-gradient(top,  rgba(254,193,81,1) 0%, rgba(254,231,154,1) 100%);
+    background: -webkit-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
+    background: -o-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
+    background: -ms-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
+    background: linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fec151', endColorstr='#fee79a',GradientType=0 );
+}
