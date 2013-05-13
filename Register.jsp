@@ -3,7 +3,8 @@
     Created on : May 1, 2013, 6:42:14 PM
     Author     : Muso
 --%>
-
+<%@page import="java.sql.*"%>
+<%@page import="java.util.*"%>
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -86,7 +87,7 @@
                             <div class="page-header">
                                 <h3>Registration Form</h3>
                             </div>
-                            <form action="addProcess" method="post">
+                            <form action="Register.jsp" method="post">
                                 <fieldset>
                                     <div class="row"><!-- username -->
                                         <div class="label">
@@ -147,7 +148,7 @@
                                             <textarea name="address" placeholder="Address" title="Address" ></textarea>
                                         </div>
                                     </div><!-- Address -->
-                                    <br/>
+                                    <br />
 
                                     <div class="row"><!-- Place & DoB -->
                                         <div class="label">
@@ -166,7 +167,7 @@
                                             <label>Sex</label>
                                         </div>
                                         <div class="input">
-                                            <input type="radio" name="sex" value="male" checked="true"> Male &nbsp; &nbsp; &nbsp; &nbsp;
+                                            <input type="radio" name="sex" value="male" checked> Male &nbsp; &nbsp; &nbsp; &nbsp;
                                             <input type="radio" name="sex" value="female" > Female
                                         </div>
                                     </div><!-- Sex -->
@@ -179,11 +180,35 @@
                                     <div class="whitespace"></div>
                                     <div class="row">
                                         <div class="row pull-right" id="submit">
-                                            <input type="submit" value="Register">
+                                            <input name="submit" type="submit" value="Register">
                                         </div>
                                     </div>
                                 </fieldset>
                             </form>
+                            <jsp:useBean id="connMan" class="com.rakoon.ConnectionManager" scope="application"/>
+                            <%
+                                if (request.getParameter("submit") != null) {
+                                    String username = request.getParameter("username");
+                                    String password = request.getParameter("password");
+                                    String rpassword = request.getParameter("rpassword");
+                                    String mail = request.getParameter("email");
+                                    String first = request.getParameter("fullname");
+                                    String last = request.getParameter("fullname");
+                                    String address = request.getParameter("fullname");
+                                    String placeOB = request.getParameter("placeOB");
+                                    String dateOB = request.getParameter("dateOB");
+                                    String gender = request.getParameter("sex");
+                                    String bankName = "BNI64";
+                                    String bankAccount = "0875412345678";
+                                    //out.print(gender);
+                                    String query = "INSERT INTO user VALUES ("+username+","+password+","+first+","+
+                                            last+","+mail+","+dateOB+","+address+","+bankName+","+bankAccount+")";
+                                    Connection connection = connMan.getConnection();
+                                    Statement statement = connection.createStatement();
+                                    statement.executeUpdate(query);
+                                    response.sendRedirect("Home.jsp");
+                                }
+                            %>
                         </section>
                     </section>
                 </div>

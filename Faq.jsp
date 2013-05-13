@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*"%>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -43,16 +45,62 @@
                                             <button type="submit" class="btn">Search</button>
                                         </form>
                                     </li>
+                                    <%-- dari sini--%>
+                                    <jsp:useBean id="loginUser" class="com.rakoon.LoginBean" scope="session"/>
+                                    <jsp:useBean id="connMan" class="com.rakoon.ConnectionManager" scope="application"/>
+                                    <%
+                                    if(!loginUser.valid()){
+                                    %>
                                     <li><a href="Register.jsp"><b>Register</b></a></li>
+                                    <%
+                                                                       }
+                                    %>
+                                    
+
+                                    <%
+                                                if (loginUser.valid()) {
+                                                    request.getSession(true);
+                                                    session.setAttribute("currentUser",loginUser);
+                                                    out.print("<li><b>Hi "+loginUser.getFirst()+" "+loginUser.getLast()+"!</b></li><br />");
+                                                    out.print("<li><b><a href=\"Logout\">Logout</b></li>");
+
+                                                } else {
+                                    %>
                                     <li class="dropdown">
+
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b><b class="caret"></b></a>
                                         <ul class="dropdown-menu">
-                                            <form>
-                                                <li><input type="text" class="text_kecil" placeholder="Username" required="" id="username" /></li>
-                                                <li><input type="password" class="password_kecil" placeholder="Password" required="" id="password" /></li>
+                                            <form action="Faq.jsp" method="post">
+                                                <li><input name="username" type="text" class="text_kecil" placeholder="Username" required="" id="username" /></li>
+                                                <li><input name="password" type="password" class="password_kecil" placeholder="Password" required="" id="password" /></li>
                                                 <li class="divider"></li>
-                                                <li><button type="button" class="pull-right">Submit</li>
+                                                <li><input name="submit" type="submit" class="pull-right" value="Submit"/></li>
                                             </form>
+                                            <%
+                                                            if (request.getParameter("submit") != null) {
+                                                                //loginUser.setUser(request.getParameter("username"));
+                                                                //loginUser.setPass(request.getParameter("password"));
+                                                                String query = "SELECT * FROM user WHERE Usename='"+request.getParameter("username")
+                                                                        +"' AND Password='"+request.getParameter("password")+"'";
+                                                                Connection connection = connMan.getConnection();
+                                                                Statement statement = connection.createStatement();
+                                                                ResultSet resultSet = statement.executeQuery(query);
+                                                                if(!resultSet.wasNull()){
+                                                                    loginUser.setUser(request.getParameter("username"));
+                                                                    loginUser.setPass(request.getParameter("password"));
+                                                                    //System.out.println("welcome "+loginUser.getUser());
+                                                                    response.sendRedirect("Home.jsp");
+                                                                    }else{
+                                                                    System.out.println("mismatch user/pass");
+                                                                    }
+
+                                                            }
+                                                        }
+
+
+
+                                            %>
+                                            <%-- sampe sini--%>
                                         </ul>
                                     </li>
                                 </ul>

@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*"%>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -61,20 +63,57 @@
         </header>
 
         <section id="content">
-            <form action="">
+            <jsp:useBean id="loginUser" class="com.rakoon.LoginBean" scope="session"/>
+            <jsp:useBean id="connMan" class="com.rakoon.ConnectionManager" scope="application"/>
+            
+            <form action="Login.jsp">
                 <h1>Login</h1>
                 <div>
-                    <input type="text" placeholder="Username" required="" id="username" />
+                    <input name="username" type="text" placeholder="Username" required="" id="username" />
                 </div>
                 <div>
-                    <input type="password" placeholder="Password" required="" id="password" />
+                    <input name="password" type="password" placeholder="Password" required="" id="password" />
                 </div>
                 <div>
-                    <input type="submit" value="Log in" />
+                    <input name="submit" type="submit" value="Log in" />
                     <a href="#">Lost your password?</a>
                     <a href="#">Register</a>
                 </div>
-            </form><!-- form -->
+            </form>
+            <!-- form -->
+            <%
+                    if (request.getParameter("submit") != null) {
+                        //loginUser.setUser(request.getParameter("username"));
+                        //loginUser.setPass(request.getParameter("password"));
+                        String query = "SELECT * FROM user WHERE Usename='" + request.getParameter("username")
+                                + "' AND Password='" + request.getParameter("password") + "'";
+                        Connection connection = connMan.getConnection();
+                        Statement statement = connection.createStatement();
+                        ResultSet resultSet = statement.executeQuery(query);
+                        if (resultSet.next()) {
+                            //resultSet.next();
+                            loginUser.setUser(resultSet.getString(1));
+                            loginUser.setPass(resultSet.getString(2));
+                            loginUser.setFirst(resultSet.getString(3));
+                            loginUser.setLast(resultSet.getString(4));
+                            loginUser.setMail(resultSet.getString(5));
+                            loginUser.setBirthDate(resultSet.getDate(6));
+                            loginUser.setAddress(resultSet.getString(7));
+                            loginUser.setBankName(resultSet.getString(8));
+                            loginUser.setBankAccount(resultSet.getString(9));
+
+                            //System.out.println("welcome "+loginUser.getUser());
+                            response.sendRedirect("Home.jsp");
+                        } else {
+                            response.sendRedirect("Login.jsp");
+                        }
+
+                    }
+                
+
+
+
+            %>
             <!--
             <div class="button">
                 <a href="#">Download source file</a>
